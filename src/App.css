@@ -1,5 +1,83 @@
 .App {
   text-align: center;
+  position: relative;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-field {
+  background-color: #414141;
+  border-radius: 3.5px;
+  border: none;
+  outline: none;
+  width: 400px;
+  height: 150px;
+  color: azure;
+  font-size: 16px;
+  padding: 2rem;
+}
+
+.classify-btn {
+  display: block;
+  border: none;
+  outline: none;
+  border-radius: 3.5px;
+  background: linear-gradient(to right, #A33A85, #E32F44, #FB7E47);
+  height: 55px;
+  width: 200px;
+  color: whitesmoke;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.output-wrapper {
+  width: 400px;
+  height: 210px;
+  border-style: solid;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #A33A85, #E32F44, #FB7E47) 1;
+  margin-left: 15px;
+  overflow-y: scroll;
+}
+
+.heading, .data {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 2.5px;
+}
+
+.heading-text {
+  width: 33.33%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-text {
+  font-size: 15px;
+  width: 33.33%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 5px;
+  font-style: italic;
 }
 
 .App-logo {
@@ -14,7 +92,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #161616;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
