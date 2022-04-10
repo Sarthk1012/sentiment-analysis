@@ -3,7 +3,8 @@ import './App.css';
 
 function App() {
   const [text, setText] = useState('');
-  const [sentenceList, setSentenceList] = useState([]);
+  const [tag, setTag] = useState('');
+  const [confidence, setConfidence] = useState('');
 
   const checkSentiment = async () => {
     const formdata = new FormData();
@@ -23,7 +24,20 @@ function App() {
       requestOptions
     );
     const data = await response.json();
-    setSentenceList(data.sentence_list);
+    const tag = data.score_tag;
+    const confidence = data.confidence;
+
+    if (tag?.includes('P')) {
+      setTag('Positive');
+    } else if (tag?.includes('N')) {
+      if (tag === 'NONE') {
+        setTag('NONE');
+      } else {
+        setTag('Negative');
+      }
+    }
+
+    setConfidence(confidence);
   };
 
   return (
@@ -32,7 +46,7 @@ function App() {
         <div className='wrapper'>
           <div className='input-wrapper'>
             <input
-              type="textarea"
+              type='textarea'
               className='input-field'
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -44,17 +58,13 @@ function App() {
           </div>
           <div className='output-wrapper'>
             <div className='heading'>
-              <span className='heading-text'>Sentence</span>
               <span className='heading-text'>Tag</span>
               <span className='heading-text'>Confidence</span>
             </div>
-            { sentenceList?.map((el, idx) => (
-              <div className='data' key={idx}>
-                <span className='data-text'>{el.text}</span>
-                <span className='data-text'>={el.score_tag}</span>
-                <span className='data-text'>{el.confidence}</span>
-              </div>
-            ))}
+            <div className='data'>
+              {tag && <span className='data-text'>={tag}</span>}
+              {confidence && <span className='data-text'>{confidence}</span>}
+            </div>
           </div>
         </div>
       </header>
